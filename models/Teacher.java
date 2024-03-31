@@ -10,13 +10,18 @@ public class Teacher extends Person{
 	public Teacher() {
 		
 	}
-	
+		
 	public float getSalary() {
 		return salary;
 	}
 	
 	public void setSalary(float salary) {
 		this.salary=salary;
+	}
+	
+	@Override
+	public String getData() {
+		return this.getName()+"\t"+this.getAge()+"\t"+this.salary;
 	}
 
 }

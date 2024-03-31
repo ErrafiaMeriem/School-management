@@ -12,12 +12,18 @@ public class Student extends Person{
 		
 	}
 	
-	public String getPrentPhoneNumber() {
+	public String getParentPhoneNumber() {
 		return parentPhoneNumber;
 	}
 	
-	public void setPrentPhoneNumber(String ParentPhoneNumber ) {
+	public void setParentPhoneNumber(String parentPhoneNumber ) {
 		this.parentPhoneNumber=parentPhoneNumber;
 	}
+	
+	@Override
+	public String getData() {
+		return this.getName()+"\t"+this.getAge()+"\t"+this.getParentPhoneNumber();
+	}
+	   
 
 }
