@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 
+import models.Person;
 import models.School;
 import models.Student;
 import models.Teacher;
@@ -18,8 +19,8 @@ public class HMI {
 	    String action;
 		
 		do {
-			System.out.println("Hi sir/lady , what do you want to do?? \n 1.add a student \n 2.Print all the students \n 3.add a teacher"
-					+ " \n 4.Print all the teachers");
+			System.out.println("Hi sir/lady , what do you want to do?? \n 1.add a student \n 2.Print all the students \n 3.Find a student by his name \n 4. Remove a student \n 5.add a teacher"
+					+ " \n 6.Print all the teachers \n 7.Find a teacher by his name \n 8.Remove a techer \n 9.exit");
 			action=scanner.next();
 			switch (action) {
 			case "1" : HMI.addStudent();
@@ -28,13 +29,22 @@ public class HMI {
 			case "2" : HMI.PrintAllStudents();
 			           break;
 			           
-			case "3" : HMI.addTeacher();
+			case "3" : HMI.findStudentByName();
+	                   break;
+			           
+			case "4" : HMI.removeStudent();
+			           break;
+				
+			case "5" : HMI.addTeacher();
 			           break;
 			           
-			case "4" : HMI.PrintAllTeachers();
-	           break;
+			case "6" : HMI.PrintAllTeachers();
+	                   break;
+	                   
+			case "7" : HMI.findTeacherByName();
+                       break;
 			}
-		}while(!action.equals("exit"));
+		}while(!action.equals("8"));
 	}
 	
 	private static School createSchool() {
@@ -81,5 +91,52 @@ public class HMI {
 		       System.out.println(teacher.getData());
 	    }
 	}
+	
+	private static Student findStudentByName() {
+		Scanner reader=new Scanner(System.in);
+		System.out.println("Please enter the name of the student you are looking for");
+		String name=reader.next();
+		Student student = HMI.schoolservices.getStudentByName(name);
+		
+		return student;
+	}
+	
+	private static Teacher findTeacherByName() {
+		Scanner reader=new Scanner(System.in);
+		System.out.println("Please enter the name of the teacher you are looking for");
+		String name=reader.next();
+		Teacher teacher = HMI.schoolservices.getTeacherByName(name);
+		
+		return teacher;
+	}
+	
+	private static void printDataStudent(Student student) {
+		if(student==null) {
+			System.out.println("We can't find this student!!");
+		}
+		else {
+			System.out.println(student.getData());
+		}
+	}
+	
+	private static void printDataTeacher(Teacher teacher) {
+		if(teacher==null) {
+			System.out.println("We can't find this teacher!!");
+		}
+		else {
+			System.out.println(teacher.getData());
+		}
+	}
+	
+	private static void removeStudent() {
+		Student student = HMI.findStudentByName();
+		HMI.schoolservices.removeStudent(student);
+	}
+	
+	private static void removeTeacher() {
+		Teacher teacher = HMI.findTeacherByName();
+		HMI.schoolservices.removeTeacher(teacher);
+	}
+	
 	
 }
