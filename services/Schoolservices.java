@@ -40,25 +40,22 @@ public class Schoolservices {
 		this.school.getStudents().remove(grade);
 	}
 	
-	public Student getStudentByName(String name) {
-		
+	public Student getStudentByName(String name) {	
 		
 		for(Student student : this.school.getStudents()){
-			if (student.getName().equals(name)) {
+			if (student.getName().toUpperCase().equals(name.toUpperCase())) {
 				return student;
 			}
 		}
-		System.out.println("This student doesn't study in this school");
 		return null;
 	}
 	
      public Teacher getTeacherByName(String name) {
 		for(Teacher teacher : this.school.getTeachers()){
-			if (teacher.getName().equals(name)) {
+			if (teacher.getName().toUpperCase().equals(name.toUpperCase())) {
 				return teacher;
 			}
 		}
-		System.out.println("This teacher doesn't teach in this school");
 		return null;
 	}
      
@@ -70,9 +67,5 @@ public class Schoolservices {
  		}
  		System.out.println("This grade doesn't exist ");
  		return null;
- 	}
-      
-     
-     
-	
+ 	}	
 }
